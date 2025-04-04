@@ -12,7 +12,7 @@ class JobController extends Controller
      */
     public function index()
     {
-        //
+        return view('job.index',['jobs'=>OfferedJob::all()]);
     }
 
     /**
