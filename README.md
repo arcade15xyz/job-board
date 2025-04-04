@@ -26,9 +26,13 @@ and then from `DatabaseSeeder.php` seed the database with dummy data.
 
 [The documentation for larave Debugbar](https://github.com/barryvdh/laravel-debugbar?tab=readme-ov-file#debugbar-for-laravel)
 To install the DebugBar
+
 ```
 composer require barryvdh/laravel-debugbar --dev
 ```
-This slows the app but helps in debugging should only work in development phase.
 
+This slows the app but helps in debugging should only work in development phase.  
+When we want **Debugbar** to not work simply change `APP_DEBUG=false` in `.env`.
 
+## Setting Up Tailwind CSS using Vite (and Node)   
+[INSTALLATION GUIDE](https://tailwindcss.com/docs/installation/framework-guides/laravel/vite)
