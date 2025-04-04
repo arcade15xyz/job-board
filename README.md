@@ -100,6 +100,12 @@ and finally in controller
 
 ## Job Pages and Card components
 
+To make components
+
+```
+php artisan make:component Card --view
+```
+
 [Guide on Card](https://laravel.com/docs/11.x/blade#components)
 
 In `index.blade.php`
@@ -136,3 +142,11 @@ In `index.blade.php`
     <x-tag>{{ Str::ucfirst($job->experience) }}</x-tag>
     <x-tag>{{ $job->category }}</x-tag>
 ```
+
+## Job Page: Job Card & Link Button Components
+
+**Checkout following files**  
+`link-button.blade.php`  
+`job-card.blade.php`  
+and other see in the commit  
+and to send values we are using `:` with the parameter name.like `:href={"route(jobs.show), $job"}
