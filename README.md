@@ -155,9 +155,15 @@ and to send values we are using `:` with the parameter name.like `:href={"route(
 
 ## Filtering Jobs: Tailwind form plugin & Text Input
 
+Install Tailwind form plugin
+
 ```
 npm install @tailwindcss/forms
 ```
 
 thats how the plugins are installed
+
+## Filtering Jobs: Form & Searching for Text in Job Posts
+
+
 
