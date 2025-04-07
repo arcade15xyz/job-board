@@ -165,5 +165,8 @@ thats how the plugins are installed
 
 ## Filtering Jobs: Form & Searching for Text in Job Posts
 
+## Filtering Jobs: Min and Max Salary
 
+## Filtering Radio Button Filters
 
+# Filtering Radio Group component
