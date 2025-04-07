@@ -169,4 +169,8 @@ thats how the plugins are installed
 
 ## Filtering Radio Button Filters
 
-# Filtering Radio Group component
+## Filtering Radio Group component
+
+## Filtering : Configuring Labels and Talking about Arrays in php
+
+## Filtering jobs: Clearing the Input
