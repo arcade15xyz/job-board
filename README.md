@@ -150,3 +150,14 @@ In `index.blade.php`
 `job-card.blade.php`  
 and other see in the commit  
 and to send values we are using `:` with the parameter name.like `:href={"route(jobs.show), $job"}
+
+## Breadcrumbs for navigation
+
+## Filtering Jobs: Tailwind form plugin & Text Input
+
+```
+npm install @tailwindcss/forms
+```
+
+thats how the plugins are installed
+
