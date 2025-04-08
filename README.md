@@ -176,3 +176,5 @@ thats how the plugins are installed
 ## Filtering jobs: Clearing the Input
 
 ## Refactor time: Gradient Background, Styling Button, Adding Alpine.js
+
+## Refactor Time: Plain Vanilla JavaScript to Alpine.js
