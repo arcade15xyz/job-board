@@ -174,3 +174,5 @@ thats how the plugins are installed
 ## Filtering : Configuring Labels and Talking about Arrays in php
 
 ## Filtering jobs: Clearing the Input
+
+## Refactor time: Gradient Background, Styling Button, Adding Alpine.js
