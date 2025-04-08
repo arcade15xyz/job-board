@@ -178,3 +178,15 @@ thats how the plugins are installed
 ## Refactor time: Gradient Background, Styling Button, Adding Alpine.js
 
 ## Refactor Time: Plain Vanilla JavaScript to Alpine.js
+
+## Refactor Filtering backend logic
+
+in replace use regular expression
+`request\('([a-z_]+)'\)` for `$filter['([a-z_]+)']`
+
+done in following files
+
+1. JobController.php
+2. OfferedJob.php
+
+## Employer : Model, Migration, Relation
