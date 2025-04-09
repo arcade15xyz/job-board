@@ -33,6 +33,7 @@ return new class extends Migration
     {
         Schema::table('offered_jobs', function(Blueprint $table){
             $table->dropForeignIdFor(\App\Models\Employer::class);
+            $table->dropColumn('employer_id');
         });
         Schema::dropIfExists('employers');
     }

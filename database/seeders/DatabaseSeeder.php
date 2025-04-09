@@ -13,7 +13,22 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\OfferedJob::factory(100)->create();
+        User::factory(300)->create();
+
+        $users = User::all()->shuffle();
+        for ($i = 0; $i < 20; $i++) {
+            \App\Models\Employer::factory()->create([
+                'user_id'=> $users->pop()->id
+            ]);
+        }
+
+        $employers = \App\Models\Employer::all();
+
+        for($i=0;$i<100;$i++){
+            \App\Models\OfferedJob::factory()->create([
+                'employer_id' => $employers->random()->id
+            ]);
+        }
         // User::factory(10)->create();
 
         // User::factory()->create([
