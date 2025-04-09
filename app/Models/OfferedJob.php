@@ -30,6 +30,13 @@ class OfferedJob extends Model
         return $this->belongsTo(Employer::class);
     }
 
+    public function jobApplications()
+    {
+        return $this->hasMany(JobApplication::class);
+    }
+
+
+
     public function scopeFilter(Builder | QueryBuilder $query, array $filters)
     {
         return $query->when($filters['search'] ?? null, function ($query, $search) {
