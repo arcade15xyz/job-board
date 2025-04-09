@@ -2,27 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\OfferedJob;
 use Illuminate\Http\Request;
 
-class JobController extends Controller
+class AuthController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index()
     {
-        $filters = request()->only(
-            'search',
-            'min_salary',
-            'max_salary',
-            'experience',
-            'category'
-        );
-
-        return view(
-            'job.index',
-            ['jobs' => OfferedJob::with('employer')->filter($filters)->get()]);
+        //
     }
 
     /**
@@ -44,17 +33,15 @@ class JobController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(OfferedJob $job)
+    public function show(string $id)
     {
-        return view(
-            'job.show',
-            ['job'=>$job->load('employer.jobs')]);
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(OfferedJob $offeredJob)
+    public function edit(string $id)
     {
         //
     }
@@ -62,7 +49,7 @@ class JobController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, OfferedJob $offeredJob)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -70,7 +57,7 @@ class JobController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(OfferedJob $offeredJob)
+    public function destroy(string $id)
     {
         //
     }

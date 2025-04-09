@@ -190,3 +190,17 @@ done in following files
 2. OfferedJob.php
 
 ## Employer : Model, Migration, Relation
+
+## Employer: Factory and seeder
+
+## Employer: Searching by Employer Name
+
+When filtering on a nested relationship use the below:
+
+```php
+    ->orWhereHas('employer', function ($query) use ($search) {
+        $query->where(column: 'company_name', operator: 'like', value: '%' . $search . '%');
+    });
+```
+
+## Employer: Other Employer Jobs on the Job Page

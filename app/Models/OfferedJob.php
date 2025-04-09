@@ -35,7 +35,10 @@ class OfferedJob extends Model
         return $query->when($filters['search'] ?? null, function ($query, $search) {
             $query->where(function ($query) use ($search) {
                 $query->where('title', 'like', '%' . $search . '%')
-                    ->orWhere('description', 'like', '%' . $search . '%');
+                    ->orWhere('description', 'like', '%' . $search . '%')
+                    ->orWhereHas(relation: 'employer', callback: function ($query) use ($search) {
+                        $query->where(column: 'company_name', operator: 'like', value: '%' . $search . '%');
+                    });
             });
         })->when($filters['min_salary'] ?? null, function ($query, $minSalary) {
             $query->where('salary', '>=', $minSalary);
