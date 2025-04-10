@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Carbon\WeekDay;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -35,6 +37,20 @@ class OfferedJob extends Model
         return $this->hasMany(JobApplication::class);
     }
 
+    /**
+     * Summary of hasUserApplied
+     * @param \Illuminate\Contracts\Auth\Authenticatable|\App\Models\User|int $user
+     * @return bool
+     */
+    public function hasUserApplied(Authenticatable|User|int $user){
+        return $this->where('id',$this->id)
+            ->whereHas('jobApplications',fn($query) => $query->where('user_id','=',$user->id ?? $user))->exists();
+
+        //  or an alternative way
+        //  $userId = is_int($user) ? $user : $user->id;
+
+        //  return $this->jobApplications()->where('user_id', $userId)->exists();
+    }
 
 
     public function scopeFilter(Builder | QueryBuilder $query, array $filters)

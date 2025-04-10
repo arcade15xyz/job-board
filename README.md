@@ -218,6 +218,9 @@ When filtering on a nested relationship use the below:
 ## Applying for Jobs: The Job Policy
 
 **To build a policy**
+
 ```
 php artisan make:policy JobPolicy --model=OfferedJob
 ```
+
+## Applying for Job: already applied or not
