@@ -214,3 +214,10 @@ When filtering on a nested relationship use the below:
 ## Applying for jobs: Controller, Routing and Application Form
 
 ## Applying for Jobs:The Logic
+
+## Applying for Jobs: The Job Policy
+
+**To build a policy**
+```
+php artisan make:policy JobPolicy --model=OfferedJob
+```
