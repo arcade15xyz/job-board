@@ -35,8 +35,13 @@
             </ul>
         </nav>
         @if (session('error'))
-            <div class=" text-sm bg-modal-red text-slate-50 max-w-1/2 text-center mx-auto p-1.5 border border-red-900 rounded-md font-extrabold">
+            <div role="alert" class=" text-sm bg-modal-red text-slate-50 max-w-1/2 text-center mx-auto p-1.5 border border-red-900 rounded-md font-extrabold">
                 {{ session('error') }}
+            </div>
+        @elseif (session('success'))
+            <div role="alert" class="my-8 rounded-md border-l-4 border-green-300 bg-green-100 p-4 text-green-700 opacity-75" >
+                <p class=" font-bold">Success!</p>
+                <p>{{ session('success') }}</p>
             </div>
         @endif
         {{ $slot }}

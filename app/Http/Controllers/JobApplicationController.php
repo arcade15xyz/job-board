@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\OfferedJob;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class JobApplicationController extends Controller
 {
@@ -26,9 +27,18 @@ class JobApplicationController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, OfferedJob $job)
     {
-        //
+        $job->jobApplications()->create(
+            [
+                'user_id' => $request->user()->id,
+                ...$request->validate([
+                    'expected_salary' => 'required|min:1|max:1000000'
+                ])
+            ]
+        );
+        return redirect()->route('jobs.show', $job)
+            ->with('success','Job application submitted.');
     }
 
     /**

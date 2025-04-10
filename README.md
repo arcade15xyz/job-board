@@ -212,3 +212,5 @@ When filtering on a nested relationship use the below:
 ## Applying for jobs : model ,migrations, factory and relations
 
 ## Applying for jobs: Controller, Routing and Application Form
+
+## Applying for Jobs:The Logic
