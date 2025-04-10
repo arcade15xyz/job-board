@@ -210,3 +210,5 @@ When filtering on a nested relationship use the below:
 ## Authentication Sign in Logic
 
 ## Applying for jobs : model ,migrations, factory and relations
+
+## Applying for jobs: Controller, Routing and Application Form

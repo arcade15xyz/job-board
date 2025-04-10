@@ -7,8 +7,6 @@
         <title>Laravel Job Board</title>
 
 
-
-
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     </head>
@@ -37,7 +35,7 @@
             </ul>
         </nav>
         @if (session('error'))
-            <div class=" text-sm bg-red-300 text-red-900 max-w-1/2 text-center mx-auto p-1.5 border border-red-900 rounded-md">
+            <div class=" text-sm bg-modal-red text-slate-50 max-w-1/2 text-center mx-auto p-1.5 border border-red-900 rounded-md font-extrabold">
                 {{ session('error') }}
             </div>
         @endif
