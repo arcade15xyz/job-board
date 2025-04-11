@@ -2,46 +2,36 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\OfferedJob;
 use Illuminate\Http\Request;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Gate;
 
-class JobApplicationController extends Controller
+class MyJobApplicationController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return view('my_job_application.index', [
+            'applications' => Auth::user()->jobApplications()->with('job', 'job.employer')->latest()->get()
+        ]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create(OfferedJob $job)
+    public function create()
     {
-        Gate::authorize('apply',$job);
-        return view('job_application.create', ['job' => $job]);
+        //
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, OfferedJob $job)
+    public function store(Request $request)
     {
-        Gate::authorize('apply',$job);
-        $job->jobApplications()->create(
-            [
-                'user_id' => $request->user()->id,
-                ...$request->validate([
-                    'expected_salary' => 'required|min:1|max:1000000'
-                ])
-            ]
-        );
-        return redirect()->route('jobs.show', $job)
-            ->with('success','Job application submitted.');
+        //
     }
 
     /**

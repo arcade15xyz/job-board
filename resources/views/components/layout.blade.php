@@ -20,7 +20,9 @@
             <ul class="flex space-x-2">
                 @auth
                     <li>
-                        {{ auth()->user()->name?? 'Anynomus'}}
+                        <a href="{{ route('my-job-applications.index') }}">
+                            {{ auth()->user()->name?? 'Anynomus'}}: Applications
+                        </a>
                     </li>
                     <li>
                         <form action="{{ route('auth.destroy') }}" method="POST">
@@ -35,7 +37,7 @@
             </ul>
         </nav>
         @if (session('error'))
-            <div role="alert" class=" text-sm bg-modal-red text-slate-50 max-w-1/2 text-center mx-auto p-1.5 border border-red-900 rounded-md font-extrabold">
+            <div role="alert" class="my-8 rounded-md border-l-4 border-red-300 bg-red-100 p-4 text-red-700 opacity-75">
                 {{ session('error') }}
             </div>
         @elseif (session('success'))

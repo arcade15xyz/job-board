@@ -42,9 +42,10 @@ class OfferedJob extends Model
      * @param \Illuminate\Contracts\Auth\Authenticatable|\App\Models\User|int $user
      * @return bool
      */
-    public function hasUserApplied(Authenticatable|User|int $user){
-        return $this->where('id',$this->id)
-            ->whereHas('jobApplications',fn($query) => $query->where('user_id','=',$user->id ?? $user))->exists();
+    public function hasUserApplied(Authenticatable|User|int $user)
+    {
+        return $this->where('id', $this->id)
+            ->whereHas('jobApplications', fn($query) => $query->where('user_id', '=', $user->id ?? $user))->exists();
 
         //  or an alternative way
         //  $userId = is_int($user) ? $user : $user->id;
