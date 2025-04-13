@@ -2,19 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Employer;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Gate;
 
-class EmployerController extends Controller
+class MyJobController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return view('my_job.index');
     }
 
     /**
@@ -22,7 +19,7 @@ class EmployerController extends Controller
      */
     public function create()
     {
-        return view('employer.create');
+        //
     }
 
     /**
@@ -30,12 +27,7 @@ class EmployerController extends Controller
      */
     public function store(Request $request)
     {
-        Auth::user()->employer()->create(
-            $request->validate([
-                    'company_name' => 'required|min:3|unique:employers,company_name'
-            ])
-        );
-        return redirect()->route('jobs.index')->with('success','Your employer account was created!');
+        //
     }
 
     /**
