@@ -13,7 +13,8 @@ class JobApplication extends Model
     protected $fillable = [
         'expected_salary',
         'user_id',
-        'offered_job_id'
+        'offered_job_id',
+        'cv_path'
     ];
 
     public function job()

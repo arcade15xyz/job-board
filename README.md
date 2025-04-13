@@ -224,3 +224,61 @@ php artisan make:policy JobPolicy --model=OfferedJob
 ```
 
 ## Applying for Job: already applied or not
+
+## File Uploads: Uploading Files
+
+Lets first check `config\filesystems.php` in there there are files related configurations.  
+Now send these command in the _Terminal_
+
+```
+php artisan make:migration AddCvPathToJobApplicationsTable
+```
+
+and in _migration_ file add this `cv_path` in `job_applications`
+
+```php
+    public function up(): void
+    {
+        Schema::table('job_applications', function (Blueprint $table) {
+            $table->string('cv_path')->nullable();
+        });
+    }
+```
+
+This command adds a new column `cv_path` to the `job_applications` table.  
+Then in `JobApplication` model add `'cv_path'` in `$fillable`.  
+Then finally in `JobApplicationController`
+
+```php
+   public function store(Request $request, OfferedJob $job)
+    {
+        Gate::authorize('apply', $job);
+
+        $validateData = $request->validate([
+            'expected_salary' => 'required|min:1|max:1000000',
+            'cv' => 'required|file|mimes:pdf|max:2048'
+        ]);
+
+
+        /**
+         * storing the files
+         */
+        $file = $request->file('cv');
+        $path = $file->store('cvs', 'local');
+
+
+        $job->jobApplications()->create(
+            [
+                'user_id' => $request->user()->id,
+                'expected_salary' => $validateData['expected_salary'],
+                'cv_path'=>$path
+            ]
+        );
+        return redirect()->route('jobs.show', $job)
+            ->with('success', 'Job application submitted.');
+    }
+```
+
+Like above the files are stored in `storage\app\private\cvs`.  
+Then finally in `<form>`
+add the `enctype="multipart/form-data"` after that the data will be sent as request.  
