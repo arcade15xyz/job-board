@@ -34,8 +34,6 @@
                 'ring-red-300' => $errors->has($name),
             ])
             >{{ old($name,$value) }}</textarea>
-
-        @endif
     @endif
 
     @error($name)
