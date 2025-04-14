@@ -19,7 +19,7 @@
 
                 <div class=" col-span-2">
                     <x-label for="salary" :required="true" >Salary</x-label>
-                    <x-text-input name="title" type="number" />
+                    <x-text-input name="salary" type="number" />
                 </div>
 
                 <div class=" col-span-2">
@@ -31,7 +31,7 @@
                     <x-label for="experience" :required="true">Experience</x-label>
                     <x-radio-group name="experience" :value="old('experience')"  :options="array_combine(
                         array_map('ucfirst', \App\Models\OfferedJob::$experience),\App\Models\OfferedJob::$experience,
-                    )" />
+                    )" :allOption="false" />
                 </div>
 
                 <div>

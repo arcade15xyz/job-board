@@ -14,6 +14,14 @@ class OfferedJob extends Model
     /** @use HasFactory<\Database\Factories\OfferedJobFactory> */
     use HasFactory;
 
+    protected $fillable = [
+        'title',
+        'location',
+        'salary',
+        'description',
+        'experience',
+        'category'
+    ];
     public static array $experience = [
         'entry',
         'intermediate',
@@ -53,7 +61,12 @@ class OfferedJob extends Model
         //  return $this->jobApplications()->where('user_id', $userId)->exists();
     }
 
-
+    /**
+     * Summary of scopeFilter
+     * @param \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder $query
+     * @param array $filters
+     * @return Builder|QueryBuilder|TWhenReturnType
+     */
     public function scopeFilter(Builder | QueryBuilder $query, array $filters)
     {
         return $query->when($filters['search'] ?? null, function ($query, $search) {
