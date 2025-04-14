@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\JobRequest;
 use App\Models\OfferedJob;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -60,17 +61,18 @@ class MyJobController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(OfferedJob $myJob)
     {
-        //
+        return view('my_job.edit',['job' => $myJob]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(JobRequest $request, OfferedJob $myJob)
     {
-        //
+        $myJob->update($request->validated());
+        return redirect()->route('my-jobs.index')->with('success','Job Updated Successfully.');
     }
 
     /**
