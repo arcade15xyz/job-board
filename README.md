@@ -281,4 +281,63 @@ Then finally in `JobApplicationController`
 
 Like above the files are stored in `storage\app\private\cvs`.  
 Then finally in `<form>`
-add the `enctype="multipart/form-data"` after that the data will be sent as request.  
+add the `enctype="multipart/form-data"` after that the data will be sent as request.
+
+## Soft Deletes
+
+soft deletes in Laravel lets you “delete” records without actually removing them from the database. Instead, Laravel sets a deleted_at timestamp — this allows you to:
+
+1. Hide the record from normal queries
+
+2. Restore it later if needed
+
+3. Maintain foreign key relationships without breaking things
+
+first lets make a new migration
+
+```
+php artisan make:migration AddSoftDeletesToJobsTable
+```
+
+In this migration now
+
+```
+php artisan migrate
+```
+
+then in migration
+
+```php
+$table->softDeletes(); // adds a deleted_at column
+```
+
+then in model
+
+```php
+use Illuminate\Database\Eloquent\SoftDeletes;
+
+class OfferedJob extends Model
+{
+    use HasFactory, SoftDeletes;
+
+    // ...
+}
+```
+
+To include soft deleted:
+
+```php
+OfferedJob::withTrashed()->get();
+```
+
+To only get soft deleted jobs:
+
+```php
+OfferedJob::onlyTrashed()->get();
+```
+
+To restore:
+
+```php
+$job->restore();
+```

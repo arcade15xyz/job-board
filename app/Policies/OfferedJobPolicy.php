@@ -16,6 +16,10 @@ class OfferedJobPolicy
         return true;
     }
 
+    public function viewAnyEmployer(?User $user){
+        return true;
+    }
+
     /**
      * Determine whether the user can view the model.
      */
@@ -29,15 +33,23 @@ class OfferedJobPolicy
      */
     public function create(User $user): bool
     {
-        return false;
+
+        return $user->employer() !== null;
     }
 
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, OfferedJob $offeredJob): bool
+    public function update(User $user, OfferedJob $offeredJob): bool|Response
     {
-        return false;
+        if($offeredJob->employer->user_id !== $user->id){
+            return false;
+        }
+
+        if($offeredJob->jobApplications()->count()>0){
+            return Response::deny('Cannot change job with application');
+        }
+        return true;
     }
 
     /**

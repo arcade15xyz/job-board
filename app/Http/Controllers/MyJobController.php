@@ -6,6 +6,7 @@ use App\Http\Requests\JobRequest;
 use App\Models\OfferedJob;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class MyJobController extends Controller
 {
@@ -14,6 +15,7 @@ class MyJobController extends Controller
      */
     public function index()
     {
+        Gate::authorize('viewAnyEmployer', OfferedJob::class);
         return view('my_job.index',
         [
             'jobs' => Auth::user()->employer
@@ -28,6 +30,7 @@ class MyJobController extends Controller
      */
     public function create()
     {
+        Gate::authorize('create',OfferedJob::class);
         return view('my_job.create');
     }
 
@@ -36,6 +39,7 @@ class MyJobController extends Controller
      */
     public function store(Request $request)
     {
+        Gate::authorize('create',OfferedJob::class);
         $validateData = $request->validate([
             'title' => 'required|string|max:255',
             'location' => 'required|string|max:255',
@@ -63,6 +67,7 @@ class MyJobController extends Controller
      */
     public function edit(OfferedJob $myJob)
     {
+        Gate::authorize('update', $myJob);
         return view('my_job.edit',['job' => $myJob]);
     }
 
@@ -78,8 +83,10 @@ class MyJobController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(OfferedJob $myJob)
     {
-        //
+        $myJob->delete();
+        return redirect()->route('my-jobs.index')
+        ->with('success','Job deleted');
     }
 }
